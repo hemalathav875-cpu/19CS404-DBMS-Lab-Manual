@@ -33,6 +33,22 @@ END;
 - Declare two numeric variables and initialize them.
 - Use an `IF` statement to compare the values.
 - Display the greater number using `DBMS_OUTPUT.PUT_LINE`.
+**PROGRAM:
+```
+  DECLARE
+    num1 NUMBER := 50;
+    num2 NUMBER := 80;
+BEGIN
+    IF num1 > num2 THEN
+        DBMS_OUTPUT.PUT_LINE('Greater number is: ' || num1);
+    ELSE
+        DBMS_OUTPUT.PUT_LINE('Greater number is: ' || num2);
+    END IF;
+END;
+/
+```
+OUTPUT:
+<img width="592" height="234" alt="Screenshot 2026-08-25 102324" src="https://github.com/user-attachments/assets/3634f364-b407-4a92-8fdf-3fa57cda6594" />
 
 **Expected Output:**  
 Greater number is: 80
@@ -49,20 +65,25 @@ Greater number is: 80
 
 **PROGRAM:
 ```
+SET SERVEROUTPUT ON;
+
 DECLARE
-    num1 NUMBER := 50;
-    num2 NUMBER := 80;
+    n NUMBER := 10;
+    sum NUMBER := 0;
+    i NUMBER := 1;
 BEGIN
-    IF num1 > num2 THEN
-        DBMS_OUTPUT.PUT_LINE('Greater number is: ' || num1);
-    ELSE
-        DBMS_OUTPUT.PUT_LINE('Greater number is: ' || num2);
-    END IF;
+    WHILE i <= n LOOP
+        sum := sum + i;
+        i := i + 1;
+    END LOOP;
+
+    DBMS_OUTPUT.PUT_LINE('Sum of first ' || n || ' natural numbers is: ' || sum);
 END;
 /
+
 ```
 **OUTPUT:
-![Uploading Screenshot 2026-08-25 102324.png…]()
+<img width="462" height="212" alt="image" src="https://github.com/user-attachments/assets/11fc4ec2-f3b7-457f-a8e1-34d26ec14c9a" />
 
 
 **Expected Output:**  
