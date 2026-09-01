@@ -33,6 +33,41 @@ END;
 **Expected Output:**
 - A new entry is added to the `employee_log` table each time a new record is inserted into the `employees` table.
 
+PROGRAM:
+```
+1. Create employees table
+CREATE TABLE employees (
+    emp_id NUMBER,
+    emp_name VARCHAR2(50),
+    salary NUMBER
+);
+2. Create employee_log table
+CREATE TABLE employee_log (
+    emp_id NUMBER,
+    emp_name VARCHAR2(50),
+    salary NUMBER,
+    log_date DATE
+);
+3. Create AFTER INSERT Trigger
+CREATE OR REPLACE TRIGGER emp_insert_log
+AFTER INSERT ON employees
+FOR EACH ROW
+BEGIN
+    INSERT INTO employee_log
+    VALUES (:NEW.emp_id, :NEW.emp_name, :NEW.salary, SYSDATE);
+END;
+/
+4. Insert a record
+INSERT INTO employees
+VALUES (101, 'Ravi', 25000);
+
+COMMIT;
+5. Check the Log
+SELECT * FROM employee_log;
+```
+OUTPUT:
+<img width="907" height="142" alt="image" src="https://github.com/user-attachments/assets/8881cda0-dd95-4a9e-8cb7-9a4689dcef11" />
+
 ---
 
 ## 2. Write a trigger to prevent deletion of records from a sensitive table.
@@ -42,6 +77,37 @@ END;
 
 **Expected Output:**
 - If an attempt is made to delete a record from `sensitive_data`, an error message is raised, e.g., `ERROR: Deletion not allowed on this table.`
+
+PROGGRAM:
+```
+1. Create sensitive_data Table
+CREATE TABLE sensitive_data (
+    id NUMBER,
+    data VARCHAR2(100)
+);
+2. Insert Sample Data
+INSERT INTO sensitive_data
+VALUES (1, 'Confidential Information');
+
+COMMIT;
+3. Create BEFORE DELETE Trigger
+CREATE OR REPLACE TRIGGER prevent_delete
+BEFORE DELETE ON sensitive_data
+FOR EACH ROW
+BEGIN
+    RAISE_APPLICATION_ERROR(
+        -20001,
+        'Deletion not allowed on this table.'
+    );
+END;
+/
+4. Try to Delete a Record
+DELETE FROM sensitive_data
+WHERE id = 1;
+```
+OUTPUT:
+<img width="676" height="238" alt="image" src="https://github.com/user-attachments/assets/96667678-16ee-43eb-9912-90fe10c53249" />
+
 
 ---
 
@@ -53,6 +119,41 @@ END;
 **Expected Output:**
 - The `last_modified` column in the `products` table is updated automatically to the current date and time when any record is updated.
 
+  PROGRAM:
+```
+  Step 1: Create products Table
+CREATE TABLE products (
+    product_id NUMBER,
+    product_name VARCHAR2(50),
+    price NUMBER,
+    last_modified TIMESTAMP
+);
+Step 2: Insert Sample Record
+INSERT INTO products
+VALUES (101, 'Laptop', 50000, SYSTIMESTAMP);
+
+COMMIT;
+Step 3: Create BEFORE UPDATE Trigger
+CREATE OR REPLACE TRIGGER update_last_modified
+BEFORE UPDATE ON products
+FOR EACH ROW
+BEGIN
+    :NEW.last_modified := SYSTIMESTAMP;
+END;
+/
+Step 4: Update a Record
+UPDATE products
+SET price = 55000
+WHERE product_id = 101;
+
+COMMIT;
+Step 5: Check the Updated Record
+SELECT * FROM products;
+```
+OUTPUT:
+<img width="906" height="132" alt="image" src="https://github.com/user-attachments/assets/9745e031-ac17-4b97-b280-fefff9dfe188" />
+
+
 ---
 
 ## 4. Write a trigger to keep track of the number of updates made to a table.
@@ -62,6 +163,45 @@ END;
 
 **Expected Output:**
 - The `audit_log` table will maintain a count of how many updates have been made to the `customer_orders` table.
+PROGRAM:
+```sql
+CREATE TABLE customer_orders (
+    order_id NUMBER,
+    customer_name VARCHAR2(50),
+    amount NUMBER
+);
+
+CREATE TABLE audit_log (
+    update_count NUMBER
+);
+
+INSERT INTO audit_log VALUES (0);
+COMMIT;
+
+CREATE OR REPLACE TRIGGER count_updates
+AFTER UPDATE ON customer_orders
+BEGIN
+    UPDATE audit_log
+    SET update_count = update_count + 1;
+END;
+/
+
+INSERT INTO customer_orders
+VALUES (101, 'Ravi', 5000);
+
+COMMIT;
+
+UPDATE customer_orders
+SET amount = 6000
+WHERE order_id = 101;
+
+COMMIT;
+
+SELECT * FROM audit_log;
+```
+OUTPUT:
+<img width="348" height="140" alt="image" src="https://github.com/user-attachments/assets/87c4138f-8dc5-4594-abd8-6bf09f171e83" />
+
 
 ---
 
@@ -72,6 +212,30 @@ END;
 
 **Expected Output:**
 - If the inserted salary in the `employees` table is below the condition (e.g., salary < 3000), the insert operation is blocked, and an error message is raised, such as: `ERROR: Salary below minimum threshold.`
+
+PROGRAM:
+```
+CREATE OR REPLACE TRIGGER check_salary
+BEFORE INSERT ON employees
+FOR EACH ROW
+BEGIN
+    IF :NEW.salary < 3000 THEN
+        RAISE_APPLICATION_ERROR(
+            -20001,
+            'Salary below minimum threshold.'
+        );
+    END IF;
+END;
+/
+
+INSERT INTO employees
+VALUES (102, 'Kumar', 2500);
+
+COMMIT;
+```
+OUTPUT:
+<img width="646" height="311" alt="image" src="https://github.com/user-attachments/assets/4716efe4-1b87-4877-8ff9-03cf4e0e473b" />
+
 
 ## RESULT
 Thus, the PL/SQL trigger programs were written and executed successfully.
