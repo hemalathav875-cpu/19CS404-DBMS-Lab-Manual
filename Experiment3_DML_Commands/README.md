@@ -47,7 +47,7 @@ SELECT column1, column2 FROM table_name WHERE condition;
 ```
 **Question 1**
 --
--- Paste Question 1 here
+update Employees set salary=8000 where employee_id=105 and salary<5000;
 
 ```sql
 -- Paste your SQL code below for Question 1
