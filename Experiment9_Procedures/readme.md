@@ -64,6 +64,7 @@ Key Differences:
 Square of 6 is 36
 
 PROGRAM:
+```
 SET SERVEROUTPUT ON;
 
 CREATE OR REPLACE PROCEDURE find_square(n NUMBER)
@@ -79,6 +80,7 @@ BEGIN
     find_square(6);
 END;
 /
+```
 
 OUTPUT:
 <img width="367" height="207" alt="image" src="https://github.com/user-attachments/assets/0d6548c8-f365-4a34-8627-498f52349349" />
@@ -99,7 +101,7 @@ OUTPUT:
 **Expected Output:**  
 Factorial of 5 is 120
 PROGRAM:
-
+```
 SET SERVEROUTPUT ON;
 
 CREATE OR REPLACE FUNCTION get_factorial(n NUMBER)
@@ -122,7 +124,7 @@ BEGIN
     DBMS_OUTPUT.PUT_LINE('Factorial of 5 is ' || get_factorial(5));
 END;
 /
----
+```
 
 OUTPUT:
 <img width="350" height="115" alt="image" src="https://github.com/user-attachments/assets/fc478550-5344-42bb-9157-b9f21046ae1f" />
@@ -141,6 +143,7 @@ OUTPUT:
 **Expected Output:**  
 12 is Even
 PROGRAM:
+```
 SET SERVEROUTPUT ON;
 
 CREATE OR REPLACE PROCEDURE check_even_odd(n NUMBER)
@@ -157,6 +160,7 @@ BEGIN
     check_even_odd(12);
 END;
 /
+```
 OUTPUT:
 <img width="386" height="138" alt="image" src="https://github.com/user-attachments/assets/6978544f-1e80-47cd-9ec8-caad4c36ade4" />
 
@@ -174,6 +178,7 @@ OUTPUT:
 **Expected Output:**  
 Reversed number of 1234 is 4321
 PROGRAM:
+```
 SET SERVEROUTPUT ON;
 
 CREATE OR REPLACE FUNCTION reverse_number(n NUMBER)
@@ -196,8 +201,8 @@ BEGIN
     DBMS_OUTPUT.PUT_LINE('Reversed number of 1234 is ' || reverse_number(1234));
 END;
 /
+```
 
----
 OUTPUT:
 <img width="383" height="147" alt="image" src="https://github.com/user-attachments/assets/468d3c77-923d-4e48-84d1-4e075caf111e" />
 
@@ -218,6 +223,7 @@ Multiplication table of 5:
 ...  
 5 x 10 = 50
 PROGRAM:
+```
 SET SERVEROUTPUT ON;
 
 CREATE OR REPLACE PROCEDURE print_table(n NUMBER)
@@ -233,7 +239,7 @@ BEGIN
     print_table(5);
 END;
 /
----
+```
 OUTPUT:
 <img width="376" height="265" alt="image" src="https://github.com/user-attachments/assets/1458504c-d879-42a5-9100-055181162f45" />
 
