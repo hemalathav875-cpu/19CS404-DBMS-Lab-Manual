@@ -216,8 +216,23 @@ CREATE TABLE Table_Name (
 -- Paste Question 10 here
 
 ```sql
--- Paste your SQL code below for Question 10
-```
+--Write a SQL statement to change salary of employee to 8000 whose Employee ID is 105, if the existing salary is less than 5000.
+
+Employees table
+
+---------------
+employee_id
+first_name
+last_name
+email
+phone_number
+hire_date
+job_id
+salary
+commission_pct
+manager_id
+department_id
+For example:
 
 **Output:**
 
