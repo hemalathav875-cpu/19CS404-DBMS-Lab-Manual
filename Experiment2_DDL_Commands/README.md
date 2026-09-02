@@ -249,7 +249,8 @@ foreign key(EmployeeID) REFERENCES Employees(EmployeeID));
 ![alt text](image-5.png)
 
 **Question 6**
-```Write a SQL query to add birth_date attribute as timestamp (datatype) in the table customer 
+```
+Write a SQL query to add birth_date attribute as timestamp (datatype) in the table customer 
 
 Sample table: customer
 
@@ -276,7 +277,7 @@ cid         name         type                               notnull     dflt_val
 PROGRAM:
 ALTER TABLE Customer ADD COLUMN birth_date timestamp;
 
-
+```
 **Output:**
 ![alt text](image-4.png)
 
