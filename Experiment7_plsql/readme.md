@@ -127,7 +127,7 @@ END;
 /
 ```
 OUTPUT:
-<img width="697" height="222" alt="image" src="https://github.com/user-attachments/assets/fabe1da9-5938-4a1e-a58f-e07fe4cdd2e4" />
+<img width="461" height="117" alt="image" src="https://github.com/user-attachments/assets/b250f04b-f371-4dd0-b095-b6f845f48bb4" />
 
 ---
 
@@ -162,7 +162,7 @@ END;
 /
 ```
 OUTPUT:
-<img width="590" height="228" alt="image" src="https://github.com/user-attachments/assets/0e7303ae-aca3-4eac-9eca-465f2e6474ee" />
+<img width="501" height="147" alt="image" src="https://github.com/user-attachments/assets/9dbaf039-affb-4ff2-b859-51b6751c05cb" />
 
 ---
 
@@ -194,8 +194,7 @@ BEGIN
 END;
 ```
 OUTPUT:
-<img width="463" height="213" alt="Screenshot 2026-08-25 103553" src="https://github.com/user-attachments/assets/bc10e622-4c6d-4192-b057-709b8c59e9cf" />
-
+<img width="468" height="148" alt="image" src="https://github.com/user-attachments/assets/75046b70-377d-400e-854f-8390372ad21b" />
 
 
 ## RESULT
