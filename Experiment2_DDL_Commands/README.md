@@ -221,7 +221,7 @@ CREATE TABLE Table_Name (
 
 **Output:**
 
-![Output10](output.png)
+k
 
 
 ## RESULT
