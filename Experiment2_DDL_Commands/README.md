@@ -397,7 +397,7 @@ StockQuantity INTEGER CHECK(StockQuantity>=0)
 
 **Output:**
 
-![alt text](image.png)
+![alt text](image-10.png)
 
 
 ## RESULT
