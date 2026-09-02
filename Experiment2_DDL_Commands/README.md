@@ -104,124 +104,300 @@ CREATE TABLE Table_Name (
 ```
 
 **Question 1**
---
--- Paste Question 1 here
+```
+Insert all products from Discontinued_products into Products.
 
-```sql
--- Paste your SQL code below for Question 1
+Table attributes are ProductID, ProductName, Price, Stock
+For example:
+
+Test	Result
+select * from Products;
+ProductID   ProductName     Price       Stock
+----------  --------------  ----------  ----------
+101         Old Smartphone  199.99      0
+102         Vintage Laptop  399.99      10
+103         Classic Tablet  149.99      5
+
+
+PROGRAM:
+
+INSERT INTO Products select * from  Discontinued_products;
 ```
 
 **Output:**
 
-![Output1](output.png)
+![alt text](image-9.png)
 
 **Question 2**
----
--- Paste Question 2 here
+```
+Insert a record with EmployeeID 001, Name Sarah Parker, Position Manager, Department HR, and Salary 60000 into the Employee table.
 
-```sql
--- Paste your SQL code below for Question 2
+For example:
+
+Test	Result
+SELECT * FROM Employee WHERE EmployeeID = 001;
+EmployeeID  Name          Position    Department  Salary
+----------  ------------  ----------  ----------  ----------
+1           Sarah Parker  Manager     HR          60000
+
+
+PROGRAM:
+INSERT INTO Employee(EmployeeID,Name,Position,Department,Salary) VALUES(1,'Sarah Parker','Manager','HR','60000');
+
 ```
 
 **Output:**
 
-![Output2](output.png)
-
+![alt text](image-8.png)
 **Question 3**
----
--- Paste Question 3 here
+```
+Create a new table named item with the following specifications and constraints:
+item_id as TEXT and as primary key.
+item_desc as TEXT.
+rate as INTEGER.
+icom_id as TEXT with a length of 4.
+icom_id is a foreign key referencing com_id in the company table.
+The foreign key should cascade updates and deletes.
+item_desc and rate should not accept NULL.
+For example:
 
-```sql
--- Paste your SQL code below for Question 3
+Test	Result
+INSERT INTO item VALUES("ITM5","Charlie Gold",700,"COM4");
+UPDATE company SET com_id='COM5' WHERE com_id='COM4';
+SELECT * FROM item;
+item_id     item_desc     rate        icom_id
+----------  ------------  ----------  ----------
+ITM5        Charlie Gold  700         COM5
+
+PROGRAM:
+CREATE TABLE item(
+item_id TEXT primary keY,
+item_desc TEXT NOT NULL,
+rate INTEGER,
+icom_id TEXT(4), 
+FOREIGN KEY(icom_id) references company(com_id) ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+ 
 ```
 
 **Output:**
 
-![Output3](output.png)
+![alt text](image-7.png)
 
 **Question 4**
----
--- Paste Question 4 here
+```
+Write a SQL Query  to Rename attribute "name" to "first_name"  and add mobilenumber as number ,DOB as Date,State as varchar(30) in the table Companies.
+Test	Result
+pragma table_info('Companies');
+cid         name        type        notnull     dflt_value  pk
+----------  ----------  ----------  ----------  ----------  ----------
+0           id          int         0                       0
+1           first_name  varchar(50  0                       0
+2           address     text        0                       0
+3           email       varchar(50  0                       0
+4           phone       varchar(10  0                       0
+5           mobilenumb  number      0                       0
+6           DOB         Date        0                       0
+7           State       varchar(30  0                       0
 
-```sql
--- Paste your SQL code below for Question 4
+
+PROGRAM:
+ALTER TABLE Companies RENAME COLUMN name TO first_name;
+ALTER TABLE Companies ADD COLUMN mobilenumber number;
+ALTER TABLE Companies ADD COLUMN DOB Date; 
+ALTER TABLE Companies ADD COLUMN State varchar(30);
+
 ```
 
 **Output:**
+![alt text](image-6.png)
 
-![Output4](output.png)
 
 **Question 5**
----
--- Paste Question 5 here
+```
+Create a table named Bonuses with the following constraints:
+BonusID as INTEGER should be the primary key.
+EmployeeID as INTEGER should be a foreign key referencing Employees(EmployeeID).
+BonusAmount as REAL should be greater than 0.
+BonusDate as DATE.
+Reason as TEXT should not be NULL.
 
-```sql
--- Paste your SQL code below for Question 5
+For example:
+
+Test	Result
+INSERT INTO Bonuses (BonusID, EmployeeID, BonusAmount, BonusDate, Reason) VALUES (1, 6, 1000.0, '2024-08-01', 'Outstanding performance');
+SELECT * FROM Bonuses;
+BonusID     EmployeeID  BonusAmount  BonusDate   Reason
+----------  ----------  -----------  ----------  -----------------------
+1           6           1000.0       2024-08-01  Outstanding performance
+
+
+PROGRAM:
+Create table Bonuses(
+BonusID INTEGER primary key,
+EmployeeID INTEGER,
+BonusAmount REAL CHECK(BonusAmount>0),
+BonusDate DATE,
+Reason TEXT NOT NULL,
+foreign key(EmployeeID) REFERENCES Employees(EmployeeID)); 
+
 ```
 
 **Output:**
 
-![Output5](output.png)
+![alt text](image-5.png)
 
 **Question 6**
----
--- Paste Question 6 here
+```Write a SQL query to add birth_date attribute as timestamp (datatype) in the table customer 
 
-```sql
--- Paste your SQL code below for Question 6
-```
+Sample table: customer
+
+ customer_id |   cust_name    |    city    | grade | salesman_id 
+-------------+----------------+------------+-------+-------------
+        3002 | Nick Rimando   | New York   |   100 |        5001
+        3007 | Brad Davis     | New York   |   200 |        5001
+        3005 | Graham Zusi    | California |   200 |        5002
+ 
+
+For example:
+
+Test	Result
+pragma table_info('customer');
+cid         name         type                               notnull     dflt_value  pk
+----------  -----------  ---------------------------------  ----------  ----------  ----------
+0           customer_id  integer primarykey auto increment  0                       0
+1           cust_name    varchar2(30)                       0                       0
+2           city         varchar(30)                        0                       0
+3           grade        number                             0                       0
+4           salesman_id  number                             0                       0
+5           birth_date   timestamp                          0                       0
+
+PROGRAM:
+ALTER TABLE Customer ADD COLUMN birth_date timestamp;
+
 
 **Output:**
-
-![Output6](output.png)
+![alt text](image-4.png)
 
 **Question 7**
----
--- Paste Question 7 here
+```
+Create a table named Shipments with the following constraints:
+ShipmentID as INTEGER should be the primary key.
+ShipmentDate as DATE.
+SupplierID as INTEGER should be a foreign key referencing Suppliers(SupplierID).
+OrderID as INTEGER should be a foreign key referencing Orders(OrderID).
+For example:
 
-```sql
--- Paste your SQL code below for Question 7
+Test	Result
+INSERT INTO Shipments (ShipmentID, ShipmentDate, SupplierID, OrderID) VALUES (2, '2024-08-03', 99, 1);
+Error: FOREIGN KEY constraint failed
+
+PROGRAM:
+CREATE TABLE Shipments(
+ShipmentID INTEGER primary key,
+ShipmentDate DATE,
+SupplierID INTEGER ,
+OrderID INTEGER,
+FOREIGN KEY(SupplierID) REFERENCES Suppliers(SupplierID),
+foreign key(OrderID) REFERENCES Orders(OrderID)
+);
+ 
+
 ```
 
 **Output:**
+![alt text](image-3.png)
 
-![Output7](output.png)
 
 **Question 8**
----
--- Paste Question 8 here
+```
+Create a table named Customers with the following columns:
 
-```sql
--- Paste your SQL code below for Question 8
+CustomerID as INTEGER
+Name as TEXT
+Email as TEXT
+JoinDate as DATETIME
+For example:
+
+Test	Result
+pragma table_info('Customers');
+cid         name        type        notnull     dflt_value  pk
+----------  ----------  ----------  ----------  ----------  ----------
+0           CustomerID  INTEGER     0                       0
+1           Name        TEXT        0                       0
+2           Email       TEXT        0                       0
+3           JoinDate    DATETIME    0                       0
+
+PROGRAM:
+
+Create table Customers(
+CustomerID INTEGER,
+Name TEXT,
+Email TEXT,
+JoinDate DATETIME);
 ```
 
 **Output:**
+![alt text](image-2.png)
 
-![Output8](output.png)
 
 **Question 9**
----
--- Paste Question 9 here
+```
+Insert the following products into the Products table:
 
-```sql
--- Paste your SQL code below for Question 9
+Name        Category     Price       Stock
+----------  -----------  ----------  ----------
+Smartphone  Electronics  800         150
+Headphones  Accessories  200         300
+For example:
+
+Test	Result
+SELECT Name, Category, Price, Stock FROM Products;
+
+Name        Category     Price       Stock
+----------  -----------  ----------  ----------
+Smartphone  Electronics  800         150
+Headphones  Accessories  200         300
+
+PROGRAM:
+
+INSERT INTO Products(Name,Category,Price,Stock) VALUES('Smartphone','Electronics',800,150),('Headphones','Accessories',200,300); 
 ```
 
 **Output:**
 
-![Output9](output.png)
+![alt text](image-1.png)
 
 **Question 10**
----
--- Paste Question 10 here
+```
+Create a table named Products with the following constraints:
+ProductID as INTEGER should be the primary key.
+ProductName as TEXT should be unique and not NULL.
+Price as REAL should be greater than 0.
+StockQuantity as INTEGER should be non-negative.
+For example:
 
-```sql
--- Paste your SQL code below for Question 10
+Test	Result
+INSERT INTO Products (ProductID, ProductName, Price, StockQuantity) VALUES (1, 'Laptop', 999.99, 10);
+select * from Products;
+ProductID   ProductName  Price       StockQuantity
+----------  -----------  ----------  -------------
+1           Laptop       999.99      10
+
+PROGRAM:
+
+Create table Products(
+ProductID INTEGER primary key,
+ProductName TEXT not NULL unique,
+Price REAL CHECK(Price>0),
+StockQuantity INTEGER CHECK(StockQuantity>=0)
+);
 ```
 
 **Output:**
 
-k
+![alt text](image.png)
 
 
 ## RESULT
